@@ -22,7 +22,7 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const res = await getAllUsers(accessToken);
-      setUsers(res.data.data);
+      setUsers(res.data.data.content);
     } catch (err) {
       toast.error("Failed to load users");
     } finally {
@@ -35,6 +35,7 @@ const Dashboard = () => {
   }, []);
 
   const total = users.length;
+  console.log(users);
   const active = users.filter((u) => u.status === "ACTIVE").length;
   const inactive = users.filter((u) => u.status === "INACTIVE").length;
   const suspended = users.filter((u) => u.status === "SUSPENDED").length;
